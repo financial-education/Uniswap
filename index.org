@@ -1,0 +1,16 @@
+#+title: Decentralized Exchanges: Uniswap
+#+author: Matt Brigida, Ph.D.
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+
+https://docs.uniswap.org/
+
+
+* Trade
+
+* Provide Liquidity
+
+[[https://help.uniswap.org/en/articles/5391541-provide-liquidity-on-uniswap-v3][Guide to providing liquidity on Uniswap V3]]
+
+** Limit Order
+
+To place what we know on stock markets as a *limit order* we can place what is termed a *range order* on Uniswap.  [[https://help.uniswap.org/en/articles/5455579-do-i-need-to-hold-both-tokens-to-provide-liquidity][See this answer.]]
