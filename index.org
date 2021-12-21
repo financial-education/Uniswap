@@ -4,8 +4,10 @@
 
 https://docs.uniswap.org/
 
+Uniswap allows you to trade and make markets across Ethereum and
+Ethereum-based tokens.
 
-* Trade
+* Trade (Swap Tokens)
 
 * Provide Liquidity
 
@@ -14,3 +16,6 @@ https://docs.uniswap.org/
 ** Limit Order
 
 To place what we know on stock markets as a *limit order* we can place what is termed a *range order* on Uniswap.  [[https://help.uniswap.org/en/articles/5455579-do-i-need-to-hold-both-tokens-to-provide-liquidity][See this answer.]]
+
+
+* Order Book vs the Automated Market Maker
