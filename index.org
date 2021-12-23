@@ -2,6 +2,8 @@
 #+author: Matt Brigida, Ph.D.
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 
+Uniswap is a protocol which allows for the exchange of ERC-20 tokens without a central authority for matching and clearing trades.  Uniswap is built on the Ethereum blockchain, and therefore does not allow the exchange of cryptocurrencies which are not part of the Ethereum ecosystem (ERC-20 tokens).  Because the protocol allows for peer-to-peer exchange, Uniswap is known as a *Decentralized Exchange*.
+
 https://docs.uniswap.org/
 
 Uniswap allows you to trade and make markets across Ethereum and
@@ -19,3 +21,10 @@ To place what we know on stock markets as a *limit order* we can place what is t
 
 
 * Order Book vs the Automated Market Maker
+
+Markets in stock, futures, and options are generally made by using a limit order book. [[https://financialmarkets.github.io/5mf_limit-order-book/][See this presentation if you need a review on limit order books.]]  Order books are centralized mechanisms.  A stock may trade across 20 limit order books, however each limit order book is reliant on the exchanges servers to maintain the book and match trades.  All interaction involves the exchange's servers.
+
+The Uniswap protocol, on the other hand,
+
+
+* Uniswap and the SEC
