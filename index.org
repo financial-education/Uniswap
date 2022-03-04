@@ -11,7 +11,29 @@ Ethereum-based tokens.
 
 * Trade (Swap Tokens)
 
-* Provide Liquidity
+* Automated Market Maker
+
+Uniswap uses a constant product relationship between currency pair.  The formula is:
+
+$x*y = k$
+
+where /x/ and /y/ are the reserve balances for currency /x/ and /y/ respectively, and /k/ is a constant.  * denotes multiplication.
+
+#+begin_comment
+insert example from here (See chart where price changes): https://docs.uniswap.org/protocol/V2/concepts/protocol-overview/how-uniswap-works
+
+#+end_comment
+
+
+* Order Book vs the Automated Market Maker
+
+Markets in stock, futures, and options are generally made by using a limit order book. [[https://financialmarkets.github.io/5mf_limit-order-book/][See this presentation if you need a review on limit order books.]]  Order books are centralized mechanisms.  A stock may trade across 20 limit order books, however each limit order book is reliant on the exchanges servers to maintain the book and match trades.  All interaction involves the exchange's servers.
+
+The Uniswap protocol, on the other hand, implements an Automated Market Maker, which is an Ethereum Smart Contract we which holds liquidity reserves against which participants can transact.  That is, buy and sell orders execute against the pool of liquidity, and the relative size of the pools determine the relative price of each token.
+
+Notably, because Uniswap is a protocol, there are no personal barriers to transacting.  There is no age, income, etc requirements.  Think of /http/.
+
+** Provide Liquidity
 
 [[https://help.uniswap.org/en/articles/5391541-provide-liquidity-on-uniswap-v3][Guide to providing liquidity on Uniswap V3]]
 
@@ -19,12 +41,10 @@ Ethereum-based tokens.
 
 To place what we know on stock markets as a *limit order* we can place what is termed a *range order* on Uniswap.  [[https://help.uniswap.org/en/articles/5455579-do-i-need-to-hold-both-tokens-to-provide-liquidity][See this answer.]]
 
-
-* Order Book vs the Automated Market Maker
-
-Markets in stock, futures, and options are generally made by using a limit order book. [[https://financialmarkets.github.io/5mf_limit-order-book/][See this presentation if you need a review on limit order books.]]  Order books are centralized mechanisms.  A stock may trade across 20 limit order books, however each limit order book is reliant on the exchanges servers to maintain the book and match trades.  All interaction involves the exchange's servers.
-
-The Uniswap protocol, on the other hand,
-
-
 * Uniswap and the SEC
+
+
+* Languages Used
+
+- Solidity to implement the smart contracts.
+- Typescript as an interface.
