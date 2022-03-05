@@ -17,7 +17,25 @@ Uniswap uses a constant product relationship between currency pair.  The formula
 
 $x*y = k$
 
-where /x/ and /y/ are the reserve balances for currency /x/ and /y/ respectively, and /k/ is a constant.  * denotes multiplication.
+where /x/ and /y/ are the reserve balances for currency /x/ and /y/ respectively, and /k/ is a constant[fn:1].  * denotes multiplication.  The idea behind the equation is that the product of the reserve balances should be a constant.
+
+Rearranging $x*y = k$ to $y=\frac{k}{x}$ and plotting we have:
+
+#+begin_src R
+k <- 50
+x <- seq(1,10,0.1)
+y <- k / x
+png("curve_plot.png")
+plot(y, type='l', lwd = 3, col = 4, xlab = "X", ylab = "Y")
+dev.off()
+#+end_src
+
+#+caption: Plot of x*y = k
+[[./curve_plot.png]]
+
+** Example
+
+
 
 #+begin_comment
 insert example from here (See chart where price changes): https://docs.uniswap.org/protocol/V2/concepts/protocol-overview/how-uniswap-works
@@ -48,3 +66,7 @@ To place what we know on stock markets as a *limit order* we can place what is t
 
 - Solidity to implement the smart contracts.
 - Typescript as an interface.
+
+* Footnotes
+
+[fn:1]/k/ is in practice increasing because there is a 0.30% fee for each trade which is added to /k/. 

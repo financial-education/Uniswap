@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-03-03 Thu 19:56 -->
+<!-- 2022-03-04 Fri 21:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Decentralized Exchanges: Uniswap</title>
@@ -228,16 +228,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf1843ec">1. Trade (Swap Tokens)</a></li>
-<li><a href="#orgb86f87a">2. Automated Market Maker</a></li>
-<li><a href="#org7409ee8">3. Order Book vs the Automated Market Maker</a>
+<li><a href="#org4dd8c08">1. Trade (Swap Tokens)</a></li>
+<li><a href="#orgd6f70c3">2. Automated Market Maker</a>
 <ul>
-<li><a href="#org4458114">3.1. Provide Liquidity</a></li>
-<li><a href="#org07f22bd">3.2. Limit Order</a></li>
+<li><a href="#org9323a26">2.1. Example</a></li>
 </ul>
 </li>
-<li><a href="#org8822fa3">4. Uniswap and the SEC</a></li>
-<li><a href="#org49fb62f">5. Languages Used</a></li>
+<li><a href="#orgcdca829">3. Order Book vs the Automated Market Maker</a>
+<ul>
+<li><a href="#org4fa16c2">3.1. Provide Liquidity</a></li>
+<li><a href="#orgcca7599">3.2. Limit Order</a></li>
+</ul>
+</li>
+<li><a href="#org74c4edf">4. Uniswap and the SEC</a></li>
+<li><a href="#org2a555cf">5. Languages Used</a></li>
 </ul>
 </div>
 </div>
@@ -254,12 +258,12 @@ Uniswap allows you to trade and make markets across Ethereum and
 Ethereum-based tokens.
 </p>
 
-<div id="outline-container-orgf1843ec" class="outline-2">
-<h2 id="orgf1843ec"><span class="section-number-2">1.</span> Trade (Swap Tokens)</h2>
+<div id="outline-container-org4dd8c08" class="outline-2">
+<h2 id="org4dd8c08"><span class="section-number-2">1.</span> Trade (Swap Tokens)</h2>
 </div>
 
-<div id="outline-container-orgb86f87a" class="outline-2">
-<h2 id="orgb86f87a"><span class="section-number-2">2.</span> Automated Market Maker</h2>
+<div id="outline-container-orgd6f70c3" class="outline-2">
+<h2 id="orgd6f70c3"><span class="section-number-2">2.</span> Automated Market Maker</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Uniswap uses a constant product relationship between currency pair.  The formula is:
@@ -270,14 +274,41 @@ Uniswap uses a constant product relationship between currency pair.  The formula
 </p>
 
 <p>
-where <i>x</i> and <i>y</i> are the reserve balances for currency <i>x</i> and <i>y</i> respectively, and <i>k</i> is a constant.  * denotes multiplication.
+where <i>x</i> and <i>y</i> are the reserve balances for currency <i>x</i> and <i>y</i> respectively, and <i>k</i> is a constant<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.  * denotes multiplication.  The idea behind the equation is that the product of the reserve balances should be a constant.
 </p>
+
+<p>
+Rearranging \(x*y = k\) to \(y=\frac{k}{x}\) and plotting we have:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-R">k <span style="color: #a9a1e1;">&lt;-</span> 50
+x <span style="color: #a9a1e1;">&lt;-</span> seq(1,10,0.1)
+y <span style="color: #a9a1e1;">&lt;-</span> k / x
+png(<span style="color: #98be65;">"curve_plot.png"</span>)
+plot(y, type=<span style="color: #98be65;">'l'</span>, lwd = 3, col = 4, xlab = <span style="color: #98be65;">"X"</span>, ylab = <span style="color: #98be65;">"Y"</span>)
+dev.off()
+</pre>
+</div>
+
+
+<div id="org09ba740" class="figure">
+<p><img src="./curve_plot.png" alt="curve_plot.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Plot of x*y = k</p>
+</div>
+</div>
+
+<div id="outline-container-org9323a26" class="outline-3">
+<h3 id="org9323a26"><span class="section-number-3">2.1.</span> Example</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
 </div>
 </div>
 
 
-<div id="outline-container-org7409ee8" class="outline-2">
-<h2 id="org7409ee8"><span class="section-number-2">3.</span> Order Book vs the Automated Market Maker</h2>
+<div id="outline-container-orgcdca829" class="outline-2">
+<h2 id="orgcdca829"><span class="section-number-2">3.</span> Order Book vs the Automated Market Maker</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Markets in stock, futures, and options are generally made by using a limit order book. <a href="https://financialmarkets.github.io/5mf_limit-order-book/">See this presentation if you need a review on limit order books.</a>  Order books are centralized mechanisms.  A stock may trade across 20 limit order books, however each limit order book is reliant on the exchanges servers to maintain the book and match trades.  All interaction involves the exchange's servers.
@@ -292,8 +323,8 @@ Notably, because Uniswap is a protocol, there are no personal barriers to transa
 </p>
 </div>
 
-<div id="outline-container-org4458114" class="outline-3">
-<h3 id="org4458114"><span class="section-number-3">3.1.</span> Provide Liquidity</h3>
+<div id="outline-container-org4fa16c2" class="outline-3">
+<h3 id="org4fa16c2"><span class="section-number-3">3.1.</span> Provide Liquidity</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 <a href="https://help.uniswap.org/en/articles/5391541-provide-liquidity-on-uniswap-v3">Guide to providing liquidity on Uniswap V3</a>
@@ -301,8 +332,8 @@ Notably, because Uniswap is a protocol, there are no personal barriers to transa
 </div>
 </div>
 
-<div id="outline-container-org07f22bd" class="outline-3">
-<h3 id="org07f22bd"><span class="section-number-3">3.2.</span> Limit Order</h3>
+<div id="outline-container-orgcca7599" class="outline-3">
+<h3 id="orgcca7599"><span class="section-number-3">3.2.</span> Limit Order</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 To place what we know on stock markets as a <b>limit order</b> we can place what is termed a <b>range order</b> on Uniswap.  <a href="https://help.uniswap.org/en/articles/5455579-do-i-need-to-hold-both-tokens-to-provide-liquidity">See this answer.</a>
@@ -311,13 +342,13 @@ To place what we know on stock markets as a <b>limit order</b> we can place what
 </div>
 </div>
 
-<div id="outline-container-org8822fa3" class="outline-2">
-<h2 id="org8822fa3"><span class="section-number-2">4.</span> Uniswap and the SEC</h2>
+<div id="outline-container-org74c4edf" class="outline-2">
+<h2 id="org74c4edf"><span class="section-number-2">4.</span> Uniswap and the SEC</h2>
 </div>
 
 
-<div id="outline-container-org49fb62f" class="outline-2">
-<h2 id="org49fb62f"><span class="section-number-2">5.</span> Languages Used</h2>
+<div id="outline-container-org2a555cf" class="outline-2">
+<h2 id="org2a555cf"><span class="section-number-2">5.</span> Languages Used</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Solidity to implement the smart contracts.</li>
@@ -325,10 +356,20 @@ To place what we know on stock markets as a <b>limit order</b> we can place what
 </ul>
 </div>
 </div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<i>k</i> is in practice increasing because there is a 0.30% fee for each trade which is added to <i>k</i>. 
+</p></div></div>
+
+
 </div>
+</div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Matt Brigida, Ph.D.</p>
-<p class="date">Created: 2022-03-03 Thu 19:56</p>
+<p class="date">Created: 2022-03-04 Fri 21:55</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
